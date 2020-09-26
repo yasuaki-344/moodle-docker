@@ -2,17 +2,8 @@
 
 ## How to run
 
-### Build Moodle docker image
+### Launch
 
 ```shell
-cd moodle/
-docker build -t moodle-app .
+docker-compose up -d
 ```
-
-### Build MySQL database docker image
-
-```shell
-cd database/
-docker build -t moodle-db .
-```
-

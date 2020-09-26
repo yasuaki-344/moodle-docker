@@ -1,0 +1,37 @@
+version: '3'
+services:
+  mysql:
+    container_name: moodle-mysql
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./database/init.d:/docker-entrypoint-initdb.d
+      - db-volume:/var/lib/mysql
+    networks:
+      - backendDB
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: moodle
+    security_opt:
+      - seccomp:unconfined
+  moodle:
+    container_name: moodle-app
+    build: ./
+    ports:
+      - 8888:80
+    volumes:
+      - moodleapp-data:/var/www/localhost/moodledata
+    networks:
+      - backendDB
+    depends_on:
+      - mysql
+volumes:
+  db-volume:
+    driver: local
+  moodleapp-data:
+    driver: local
+networks:
+  backendDB:
+    driver: bridge
