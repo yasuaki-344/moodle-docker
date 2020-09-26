@@ -18,7 +18,7 @@ services:
       - seccomp:unconfined
   moodle:
     container_name: moodle-app
-    build: ./
+    build: ./moodle/
     ports:
       - 8888:80
     volumes:
