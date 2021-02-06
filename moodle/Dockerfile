@@ -1,9 +1,8 @@
-FROM alpine:latest
+FROM php:7-alpine
 RUN apk --no-cache add \
     apache2 \
     graphviz aspell ghostscript clamav wget \
     mysql-client \
-    php7 \
     php7-fpm \
     php7-opcache \
     php7-apache2 \
